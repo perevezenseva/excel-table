@@ -1,7 +1,7 @@
 <ng-container *ngFor="let child of children">
     <div class="td table-header subtitle">
         <img [style.visibility]="(child.children && child.children.length) ? 'visible': 'hidden'" alt="arrow"
-            src="../../../assets/arrow.png" (click)="expandRow()" />
+            src="assets/arrow.png" (click)="expandRow()" />
         {{ child.name }}
     </div>
     <ng-container *ngIf="!(child.children && child.children.length)">
