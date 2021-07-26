@@ -6,14 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TableComponent } from './components/table/table.component';
 import { EditCellDirective } from './directives/edit-cell.directive';
-import { TreeViewComponent } from './components/tree-view/tree-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
-    EditCellDirective,
-    TreeViewComponent
+    EditCellDirective
   ],
   imports: [
     BrowserModule,

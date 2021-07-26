@@ -167,15 +167,12 @@ export class TableComponent implements OnInit {
     title.children.forEach((child) => {
       this.calculateNode(child);
     });
-    title.number = title.children.map((ch) => Number(ch.number)).reduce((a, b) => a + b);
+    const notNull = title.children.filter(c => !!c.number);
+    title.number = notNull && notNull.length ? notNull.map((ch) => Number(ch.number)).reduce((a, b) => a + b, 0): null;
   }
 
   expandRow() {
     
-  }
-
-  viewTable() {
-    console.log('this.data', this.data);
   }
 
   constructor() { }
