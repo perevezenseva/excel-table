@@ -1,0 +1,86 @@
+<div class="table">
+    <div class="row">
+        <div class="column table-header">
+            <div class="td">Data</div>
+            <div class="td table-header">
+                <img [style.visibility]="'visible'" alt="arrow" src="../../../assets/arrow.png" />
+                {{ 'Title' }}
+            </div>
+            <div class="td subtitle">
+                <img [style.visibility]="'hidden'" alt="arrow" src="../../../assets/arrow.png" (click)="expandRow()" />
+                {{ 'Subtitle 1' }}
+            </div>
+            <div class="td subtitle">
+                <img [style.visibility]="'visible'" alt="arrow" src="../../../assets/arrow.png" (click)="expandRow()" />
+                {{ 'Subtitle 2' }}
+            </div>
+            <div class="td subtitle__data">
+                {{ 'Data 1' }}
+            </div>
+            <div class="td subtitle__data">
+                {{ 'Data 2' }}
+            </div>
+            <div class="td">
+                Date
+            </div>
+            <div class="td">
+                Select
+            </div>
+            <div class="td">
+                File
+            </div>
+        </div>
+        <div class="column" *ngFor="let year of data">
+            <div class="td table-header">{{ year.year }}</div>
+            <ng-container *ngFor="let title of year.titles">
+                <div class="td">
+                    {{ title.number }}
+                </div>
+                <ng-container *ngFor="let subs of title.children">
+                    <ng-container *ngIf="subs.children && subs.children.length">
+                        <div class="td">
+                            {{ subs.number }}
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="!(subs.children && subs.children.length)">
+                        <div class="td" editCell>
+                            <input style="display: none;" type="number" [ngModel]="subs.number"
+                                (focusout)="onFocusOutEvent($event, subs, 'number')" />
+                            <span>{{ subs.number }}</span>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngFor="let dat of subs.children">
+                        <div class="td" editCell>
+                            <input style="display: none;" type="number" [ngModel]="dat.number"
+                                (focusout)="onFocusOutEvent($event, dat, 'number')" />
+                            <span>{{ dat.number }}</span>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+
+            <div class="td" editCell>
+                <input style="display: none;" type="date" [ngModel]="year.date | date:'yyyy-MM-dd'"
+                    (focusout)="onFocusOutEvent($event, year, 'date')" />
+                <span>{{ year.date | date : 'dd.MM.YYYY' }}</span>
+            </div>
+            <div class="td" editCell>
+                <select style="display: none;" [ngModel]="year.select"
+                    (focusout)="onFocusOutEvent($event, year, 'select')">
+                    <option value="Option 1">Option 1</option>
+                    <option value="Option 2">Option 2</option>
+                    <option value="Option 3">Option 3</option>
+                </select>
+                <span>{{ year.select }}</span>
+            </div>
+            <div class="td" editCell>
+                <input style="display: none;" type="file" [ngModel]="year.file"
+                    (change)="onFocusOutEvent($event, year, 'file')" />
+                <span><span class="download" (click)="downloadFile(year.file)">{{ year.file ? 'Download': null }}</span></span>
+            </div>
+        </div>
+    </div>
+
+
+    <button (click)="viewTable()">Check table data</button>
+</div>

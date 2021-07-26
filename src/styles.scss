@@ -1,1 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~src/variables.scss";
+
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+}
+.td {
+    padding: 8px 16px;
+    width: 150px;
+    height: 20px;
+    text-align: left;
+    margin: 1px;
+    img {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+    }
+    input, select {
+        width: 130px;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid gray;
+        background-color: transparent;
+    }
+}
+.table-header {
+    font-weight: bold;
+}
+.td:nth-child(even) {
+    background-color: $gray-color;
+}
+.td:nth-child(odd) {
+    background-color: $blue-color;
+}
+.subtitle {
+    text-align: center !important;
+    &__data {
+        text-align: right !important;
+    }
+}
