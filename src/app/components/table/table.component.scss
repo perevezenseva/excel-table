@@ -1,3 +1,52 @@
-.download {
-    cursor: pointer;
+@import "~src/variables.scss";
+
+.table-container {
+    max-width: 760px;
+    width: 80vw;
+    overflow-x: auto;
+}
+.table {
+    width: 760px;
+    .row {
+        display: flex;
+        flex-direction: row;
+    }
+    .td {
+        padding: 8px 16px;
+        width: 150px;
+        height: 20px;
+        text-align: left;
+        margin: 1px;
+        img {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+        input, select {
+            width: 130px;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid gray;
+            background-color: transparent;
+        }
+    }
+    .table-header {
+        font-weight: bold;
+    }
+    .row:nth-child(even) {
+        background-color: $gray-color;
+    }
+    .row:nth-child(odd) {
+        background-color: $blue-color;
+    }
+    .subtitle {
+        text-align: center !important;
+        &__data {
+            text-align: right !important;
+        }
+    }
+    
+    .download {
+        cursor: pointer;
+    }
 }
